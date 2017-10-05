@@ -8,7 +8,7 @@ currs = ['BTC', 'ETH', 'LTC', 'BCH', 'NEO', 'OMG', 'XRP', 'XMR', 'IOT', 'ZEC', '
 
 result = []
 
-time = dt.datetime(2017,10,4,21)
+time = dt.datetime(2017, 10, 4, 21)
 
 for curr in currs:
 

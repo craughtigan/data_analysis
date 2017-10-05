@@ -1,20 +1,20 @@
 import cryptocompare as cc
 import time
 import pandas as pd
+import datetime as dt
 
-result = []
+df = pd.DataFrame.from_csv('/Users/cameronraughtigan/Python/PycharmProjects/data_analysis/btc.csv')
 
-times = pd.date_range('01/01/2017', '09/30/2017', freq='H')
+start = (max(list(df.index))) + dt.timedelta(days=1)
+end = dt.datetime.now().replace(minute=0, second=0, microsecond=0)
 
-fd = open('/Users/cameronraughtigan/Python/PycharmProjects/data_analysis/btc.csv', 'a', newline='')
+times = pd.date_range(start, end, freq='D')
 
 for t in times:
 
     result = cc.get_historical_price('BTC', 'USD', t)
-    row = t.strftime('%Y-%m-%d %H:%M:%S') + ',' + str(result['BTC']['USD'])
+    row = t.strftime('%Y-%m-%d %H:%M:%S') + ',' + str(result['BTC']['USD']) + '\n'
+    fd = open('/Users/cameronraughtigan/Python/PycharmProjects/data_analysis/btc.csv', 'a', newline='')
     fd.write(row)
+    fd.close()
     time.sleep(11)
-
-fd.close()
-
-
