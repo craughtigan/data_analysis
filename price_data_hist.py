@@ -1,19 +1,21 @@
 import cryptocompare as cc
 import datetime as dt
+import pandas as pd
+import csv
 
 currs = ['BTC', 'ETH', 'LTC', 'BCH', 'NEO', 'OMG', 'XRP', 'XMR', 'IOT', 'ZEC', 'DASH']
 #cur_list = ','.join(currs)
 
 result = []
 
-pull_time = dt.datetime.now().replace(minute=0, second=0, microsecond=0)
+time = dt.datetime(2017,10,4,21)
 
 for curr in currs:
 
-    result.append(cc.get_historical_price(curr, 'USD', pull_time))
+    result.append(cc.get_historical_price(curr,'USD', time))
 
 prices = []
-prices.append(pull_time.strftime('%Y-%m-%d %H:%M:%S'))
+prices.append(time.strftime('%Y-%m-%d %H:%M:%S'))
 
 idx = 0
 for data in result:
