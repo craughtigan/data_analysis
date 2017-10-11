@@ -23,6 +23,8 @@ for t in times:
     result = []
     for curr in currs:
         result.append(cc.get_historical_price(curr, 'USD', t))
+        # delay for cryptocompare database
+        time.sleep(11)
 
     # create comma delimited string
     prices = []
@@ -41,9 +43,6 @@ for t in times:
 
     # write line to file
     fd.write(prices_string)
-
-    # delay for cryptocompare database
-    time.sleep(10)
 
 # close the file
 fd.close()
